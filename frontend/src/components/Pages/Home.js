@@ -1,5 +1,5 @@
 import {Box, Flex, useToast} from '@chakra-ui/core';
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import MarkdownInput from '../MarkdownInput';
 import MarkdownPreview from '../MarkdownPreview';
 import Navbar from '../Navbar';
@@ -8,10 +8,20 @@ import NoteContext from '../../context/Note/noteContext';
 const Home = () => {
   const toast = useToast();
   const noteContext = useContext(NoteContext);
-  const {loading, note} = noteContext;
+  const {note, error} = noteContext;
 
   const [markdown, setMarkdown] = useState('');
   const [noteName, setNoteName] = useState('Dummy Note');
+  useEffect(() => {
+    if (error !== null) {
+      toast({
+        description: error.msg,
+        status: 'error',
+        duration: 5000,
+        position: 'bottom-right',
+      });
+    }
+  }, [error]);
 
   const onSaveButtonClick = () => {
     if (markdown === '') {
