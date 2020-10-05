@@ -1,7 +1,13 @@
 import React, {useReducer} from 'react';
 import noteContext from './noteContext';
 import noteReducer from './noteReducer';
-import {GET_NOTE, NOTE_ERROR, SAVE_NOTE, UPDATE_NOTE} from '../types';
+import {
+  GET_NOTE,
+  NOTE_ERROR,
+  SAVE_NOTE,
+  UPDATE_NOTE,
+  CLEAR_NOTE,
+} from '../types';
 import axios from 'axios';
 
 const NoteState = props => {
@@ -68,6 +74,9 @@ const NoteState = props => {
     }
   };
 
+  // clear notes
+  const clearNote = () => dispatch({type: CLEAR_NOTE, payload: null});
+
   return (
     <noteContext.Provider
       value={{
@@ -77,6 +86,7 @@ const NoteState = props => {
         saveNote,
         updateNote,
         getNote,
+        clearNote,
       }}>
       {props.children}
     </noteContext.Provider>
