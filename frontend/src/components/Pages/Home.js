@@ -12,7 +12,12 @@ const Home = () => {
 
   const [markdown, setMarkdown] = useState('');
   const [noteName, setNoteName] = useState('Dummy Note');
+
   useEffect(() => {
+    // for case when user came from note viewing mode, note is still in state,
+    if (note !== null) {
+      noteContext.clearNote();
+    }
     if (error !== null) {
       toast({
         description: error.msg,
