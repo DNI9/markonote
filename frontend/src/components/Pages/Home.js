@@ -1,9 +1,10 @@
-import {Box, Flex, useToast} from '@chakra-ui/core';
+import {Box, CloseButton, Flex, useToast} from '@chakra-ui/core';
 import React, {useContext, useEffect, useState} from 'react';
 import MarkdownInput from '../MarkdownInput';
 import MarkdownPreview from '../MarkdownPreview';
 import Navbar from '../Navbar';
 import NoteContext from '../../context/Note/noteContext';
+import SmallPreview from '../SmallPreview';
 
 const Home = () => {
   const toast = useToast();
@@ -12,6 +13,7 @@ const Home = () => {
 
   const [markdown, setMarkdown] = useState('');
   const [noteName, setNoteName] = useState('Dummy Note');
+  const [smallPreview, SetSmallPreview] = useState(false);
 
   useEffect(() => {
     // for case when user came from note viewing mode, note is still in state,
@@ -63,7 +65,15 @@ const Home = () => {
     <>
       <Navbar onSaveButtonClick={onSaveButtonClick} setNoteName={setNoteName} />
       <Flex p={3} minH='90vh'>
-        <MarkdownInput setMarkdown={setMarkdown} />
+        <SmallPreview
+          markdown={markdown}
+          smallPreview={smallPreview}
+          SetSmallPreview={SetSmallPreview}
+        />
+        <MarkdownInput
+          setMarkdown={setMarkdown}
+          SetSmallPreview={SetSmallPreview}
+        />
         <Box display={{base: 'none', md: 'none', lg: 'block'}} flex='1' ml={3}>
           <MarkdownPreview markdown={markdown} />
         </Box>
