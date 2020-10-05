@@ -75,7 +75,11 @@ const Home = () => {
           setMarkdown={setMarkdown}
           SetSmallPreview={SetSmallPreview}
         />
-        <Box display={{base: 'none', md: 'none', lg: 'block'}} flex='1' ml={3}>
+        <Box
+          pos='relative'
+          display={{base: 'none', md: 'none', lg: 'block'}}
+          flex='1'
+          ml={3}>
           <MarkdownPreview markdown={markdown} />
         </Box>
       </Flex>
