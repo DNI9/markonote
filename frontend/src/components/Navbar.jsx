@@ -7,13 +7,15 @@ import {
   Heading,
   Icon,
   Tooltip,
+  useDisclosure,
   useToast,
 } from '@chakra-ui/core';
 import React, {useContext} from 'react';
-import CopyToClipboard from '../utils/CopyToClipboard';
-import NoteContext from '../context/Note/noteContext';
-import {useHistory} from 'react-router-dom';
 import {GoNote} from 'react-icons/go';
+import {useHistory} from 'react-router-dom';
+import NoteContext from '../context/Note/noteContext';
+import CopyToClipboard from '../utils/CopyToClipboard';
+import AboutAppModal from './AboutAppModal';
 
 const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
   let history = useHistory();
@@ -38,6 +40,7 @@ const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
       });
     }
   }
+  const {isOpen, onOpen, onClose} = useDisclosure();
 
   return (
     <Flex
@@ -46,15 +49,17 @@ const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
       h='3.5rem'
       minW='100vw'
       p='0.5rem 1rem'
-      shadow='lg'>
-      <Box as={GoNote} size='24px' mr={1} />
+      shadow='lg'
+      zIndex='1'>
+      <Box as={GoNote} size='24px' mr={1} onClick={onOpen} cursor='pointer' />
+      <AboutAppModal isOpen={isOpen} onClose={onClose} />
       <Heading
         display={{base: 'none', md: 'block'}}
         pb={1}
         size='md'
         color='gray.800'
         letterSpacing='1px'>
-        Markdown Note
+        Guunobindo Note
       </Heading>
 
       <Flex align='center' justify='start' ml='auto'>
