@@ -13,6 +13,7 @@ import React, {useContext} from 'react';
 import CopyToClipboard from '../utils/CopyToClipboard';
 import NoteContext from '../context/Note/noteContext';
 import {useHistory} from 'react-router-dom';
+import {GoNote} from 'react-icons/go';
 
 const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
   let history = useHistory();
@@ -30,7 +31,7 @@ const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
       });
     } else {
       toast({
-        description: 'Haha, save the note plox!',
+        description: 'oho, Save note first then try to copy',
         status: 'error',
         duration: 5000,
         position: 'bottom-right',
@@ -46,7 +47,7 @@ const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
       minW='100vw'
       p='0.5rem 1rem'
       shadow='lg'>
-      <Icon name='chevron-right' size='24px' />
+      <Box as={GoNote} size='24px' mr={1} />
       <Heading pb={1} size='md' color='gray.800' letterSpacing='1px'>
         Markdown Note
       </Heading>

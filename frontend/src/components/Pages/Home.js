@@ -32,7 +32,7 @@ const Home = () => {
   const onSaveButtonClick = () => {
     if (markdown === '') {
       toast({
-        description: 'Oh noe, looks like you have nothing to type',
+        description: 'Oh noe, looks like you have nothing to save',
         status: 'warning',
         duration: 5000,
         position: 'bottom-right',
@@ -42,7 +42,7 @@ const Home = () => {
     if (note === null) {
       noteContext.saveNote({markdown, noteName});
       toast({
-        description: 'Saved note, continue typing!',
+        description: 'Saving note, continue typing.',
         status: 'success',
         duration: 4000,
         position: 'bottom-right',
@@ -51,7 +51,7 @@ const Home = () => {
     if (note !== null) {
       noteContext.updateNote({markdown, noteName}, note.data._id);
       toast({
-        description: 'Updated note, Nice work!',
+        description: 'Updating note, continue typing.',
         status: 'success',
         duration: 4000,
         position: 'bottom-right',
