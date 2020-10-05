@@ -1,7 +1,7 @@
 import {Box, IconButton, Textarea} from '@chakra-ui/core';
 import React from 'react';
 
-const MarkdownInput = ({setMarkdown, SetSmallPreview}) => {
+const MarkdownInput = ({setMarkdown, markdown, SetSmallPreview}) => {
   const handleInputChange = e => {
     setMarkdown(e.target.value);
   };
@@ -11,7 +11,7 @@ const MarkdownInput = ({setMarkdown, SetSmallPreview}) => {
         className='textarea_input'
         resize='none'
         borderColor='gray.300'
-        // value={markdown}
+        value={markdown}
         onChange={handleInputChange}
         h='100%'
         placeholder='Start writing with Markdown'

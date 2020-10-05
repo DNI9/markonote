@@ -1,9 +1,9 @@
-import {Box, CloseButton, Flex, useToast} from '@chakra-ui/core';
+import {Box, Flex, useToast} from '@chakra-ui/core';
 import React, {useContext, useEffect, useState} from 'react';
+import NoteContext from '../../context/Note/noteContext';
 import MarkdownInput from '../MarkdownInput';
 import MarkdownPreview from '../MarkdownPreview';
 import Navbar from '../Navbar';
-import NoteContext from '../../context/Note/noteContext';
 import SmallPreview from '../SmallPreview';
 
 const Home = () => {
@@ -71,6 +71,7 @@ const Home = () => {
           SetSmallPreview={SetSmallPreview}
         />
         <MarkdownInput
+          markdown={markdown}
           setMarkdown={setMarkdown}
           SetSmallPreview={SetSmallPreview}
         />
