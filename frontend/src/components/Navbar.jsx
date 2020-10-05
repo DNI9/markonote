@@ -12,8 +12,10 @@ import {
 import React, {useContext} from 'react';
 import CopyToClipboard from '../utils/CopyToClipboard';
 import NoteContext from '../context/Note/noteContext';
+import {useHistory} from 'react-router-dom';
 
 const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
+  let history = useHistory();
   const toast = useToast();
   const noteContext = useContext(NoteContext);
   const {loading, note} = noteContext;
@@ -86,7 +88,14 @@ const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
         </Tooltip>
         {publicMode && (
           <Tooltip label='New Note' placement='bottom'>
-            <Icon onClick={() => {}} cursor='pointer' name='add' size='18px' />
+            <Icon
+              onClick={() => {
+                history.push('/');
+              }}
+              cursor='pointer'
+              name='add'
+              size='18px'
+            />
           </Tooltip>
         )}
       </Flex>
