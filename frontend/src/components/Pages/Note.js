@@ -3,24 +3,20 @@ import React, {useContext, useEffect} from 'react';
 import MarkdownPreview from '../MarkdownPreview';
 import Navbar from '../Navbar';
 import NoteContext from '../../context/Note/noteContext';
-import {useParams} from 'react-router-dom';
+import {Redirect, useParams} from 'react-router-dom';
 
 const Note = () => {
   const {id} = useParams();
   const noteContext = useContext(NoteContext);
-  const {loading, note} = noteContext;
+  const {loading, note, error} = noteContext;
 
   useEffect(() => {
     noteContext.getNote(id);
   }, []);
 
-  return (
-    <>
-      {loading && note === null ? (
-        <Box className='abs-center'>
-          <Spinner size='xl' />
-        </Box>
-      ) : (
+  const RenderMain = () => {
+    if (note !== null && note.code === 'GET_NOTE') {
+      return (
         <>
           <Navbar publicMode noteName={note.data.noteName} />
           <Flex p={3} minH='90vh'>
@@ -29,6 +25,19 @@ const Note = () => {
             </Box>
           </Flex>
         </>
+      );
+    }
+    return <Redirect to='/' />;
+  };
+
+  return (
+    <>
+      {loading && note === null ? (
+        <Box className='abs-center'>
+          <Spinner size='xl' />
+        </Box>
+      ) : (
+        <RenderMain />
       )}
     </>
   );
