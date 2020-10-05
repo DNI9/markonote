@@ -1,11 +1,11 @@
 import React, {useReducer} from 'react';
 import noteContext from './noteContext';
 import noteReducer from './noteReducer';
-import {GET_NOTE, SAVE_NOTE, UPDATE_NOTE} from '../types';
+import {GET_NOTE, NOTE_ERROR, SAVE_NOTE, UPDATE_NOTE} from '../types';
 import axios from 'axios';
 
 const NoteState = props => {
-  // Set up initial state
+  // NOTE: REMEMBER TO SET AS VALUE BELOW
   const initialState = {
     note: null,
     loading: true,
@@ -21,10 +21,8 @@ const NoteState = props => {
     try {
       const res = await axios.get(`/api/notes/${noteID}`);
       dispatch({type: GET_NOTE, payload: res.data});
-      console.log(res.data);
     } catch (err) {
-      // dispatch({ type: SAVE_ERROR, payload: err.response.msg });
-      console.error(err);
+      dispatch({type: NOTE_ERROR, payload: err.response.data});
     }
   };
 
@@ -75,6 +73,7 @@ const NoteState = props => {
       value={{
         note: state.note,
         loading: state.loading,
+        error: state.error,
         saveNote,
         updateNote,
         getNote,
