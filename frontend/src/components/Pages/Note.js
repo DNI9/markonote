@@ -16,19 +16,17 @@ const Note = () => {
 
   return (
     <>
-      {loading ? (
+      {loading && note === null ? (
         <Box className='abs-center'>
           <Spinner size='xl' />
         </Box>
       ) : (
         <>
-          {note !== null && <Navbar publicMode noteName={note.noteName} />}
+          <Navbar publicMode noteName={note.data.noteName} />
           <Flex p={3} minH='90vh'>
-            {note !== null && (
-              <Box flex='1' ml={3}>
-                <MarkdownPreview markdown={note.data.markdown} />
-              </Box>
-            )}
+            <Box flex='1' ml={3}>
+              <MarkdownPreview markdown={note.data.markdown} />
+            </Box>
           </Flex>
         </>
       )}

@@ -18,7 +18,7 @@ const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
   let history = useHistory();
   const toast = useToast();
   const noteContext = useContext(NoteContext);
-  const {loading, note} = noteContext;
+  const {note} = noteContext;
   function onCopyBtnClick() {
     if (note !== null) {
       CopyToClipboard(note.data._id);
