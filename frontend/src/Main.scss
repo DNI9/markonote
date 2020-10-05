@@ -28,6 +28,10 @@ h6 {
   letter-spacing: 1px;
 }
 
+input {
+  outline: none;
+}
+
 code {
   font-family: 'Victor Mono', monospace;
   margin: 0.8rem 0;
@@ -54,4 +58,11 @@ a {
   padding: 0.2rem 0.3rem;
   position: relative;
   font-weight: 500;
+}
+
+.abs-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -1,11 +1,14 @@
-import {SAVE_NOTE, GET_NOTE, SET_LOADING} from '../types';
+import {SAVE_NOTE, UPDATE_NOTE, GET_NOTE} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
-    case SET_LOADING:
+    case SAVE_NOTE:
+    case UPDATE_NOTE:
+    case GET_NOTE:
       return {
         ...state,
-        loading: true,
+        note: action.payload,
+        loading: false,
       };
 
     default:

@@ -14,7 +14,7 @@ const MarkdownInput = ({setMarkdown}) => {
         // value={markdown}
         onChange={handleInputChange}
         h='100%'
-        placeholder='Write something in markdown'
+        placeholder='Start writing with Markdown'
       />
     </Box>
   );

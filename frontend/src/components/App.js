@@ -1,21 +1,21 @@
-import {Box, Flex} from '@chakra-ui/core';
-import React from 'react';
+import {Box, useToast} from '@chakra-ui/core';
+import React, {useContext, useEffect} from 'react';
 import '../../node_modules/highlight.js/styles/github.css';
 import '../Main.scss';
-import MarkdownInput from './MarkdownInput';
-import MarkdownPreview from './MarkdownPreview';
-import Navbar from './Navbar';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Home from './Pages/Home';
+import Note from './Pages/Note';
+import NoteContext from '../context/Note/noteContext';
 
 export default function App() {
-  let [markdown, setMarkdown] = React.useState('');
-
   return (
-    <Box minH='100vh'>
-      <Navbar />
-      <Flex p={3} minH='90vh'>
-        <MarkdownInput setMarkdown={setMarkdown} />
-        <MarkdownPreview markdown={markdown} />
-      </Flex>
-    </Box>
+    <Router>
+      <Box minH='100vh'>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/:id' component={Note} />
+        </Switch>
+      </Box>
+    </Router>
   );
 }

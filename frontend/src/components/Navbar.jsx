@@ -1,9 +1,41 @@
-import {Box, Flex, Heading, Icon, Tooltip} from '@chakra-ui/core';
+import {
+  Box,
+  Editable,
+  EditableInput,
+  EditablePreview,
+  Flex,
+  Heading,
+  Icon,
+  Tooltip,
+  useToast,
+} from '@chakra-ui/core';
 import React, {useContext} from 'react';
+import CopyToClipboard from '../utils/CopyToClipboard';
 import NoteContext from '../context/Note/noteContext';
 
-const Navbar = () => {
+const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
+  const toast = useToast();
   const noteContext = useContext(NoteContext);
+  const {loading, note} = noteContext;
+  function onCopyBtnClick() {
+    if (note !== null) {
+      CopyToClipboard(note.data._id);
+      toast({
+        description: 'Copied Note URL to clipboard',
+        status: 'success',
+        duration: 5000,
+        position: 'bottom-right',
+      });
+    } else {
+      toast({
+        description: 'Haha, save the note plox!',
+        status: 'error',
+        duration: 5000,
+        position: 'bottom-right',
+      });
+    }
+  }
+
   return (
     <Flex
       align='center'
@@ -17,21 +49,47 @@ const Navbar = () => {
         Markdown Note
       </Heading>
 
-      <Box ml='auto'>
-        <Tooltip label='Save Note' placement='bottom'>
+      <Flex align='center' justify='start' ml='auto'>
+        <Tooltip
+          label={publicMode ? '' : 'Click to edit note name'}
+          placement='bottom'>
+          <Box mr={3}>
+            <Editable
+              isDisabled={publicMode}
+              onChange={value => setNoteName(value)}
+              defaultValue={noteName ? noteName : 'Dummy Note'}>
+              <EditablePreview />
+              <EditableInput border='none' p={1} />
+            </Editable>
+          </Box>
+        </Tooltip>
+        {!publicMode && (
+          <Tooltip label='Save/Update Note' placement='bottom'>
+            <Icon
+              onClick={onSaveButtonClick}
+              aria-label='Save note'
+              cursor='pointer'
+              name='check'
+              size='20px'
+              mr={2}
+            />
+          </Tooltip>
+        )}
+        <Tooltip label='Copy URL' placement='bottom'>
           <Icon
-            onClick={() => noteContext.saveNote()}
-            aria-label='Save note'
+            onClick={onCopyBtnClick}
             cursor='pointer'
-            name='check'
+            name='copy'
             size='20px'
             mr={2}
           />
         </Tooltip>
-        <Tooltip label='Copy URL' placement='bottom'>
-          <Icon cursor='pointer' name='copy' size='20px' />
-        </Tooltip>
-      </Box>
+        {publicMode && (
+          <Tooltip label='New Note' placement='bottom'>
+            <Icon onClick={() => {}} cursor='pointer' name='add' size='18px' />
+          </Tooltip>
+        )}
+      </Flex>
     </Flex>
   );
 };
