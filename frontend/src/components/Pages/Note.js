@@ -8,10 +8,11 @@ import {Redirect, useParams} from 'react-router-dom';
 const Note = () => {
   const {id} = useParams();
   const noteContext = useContext(NoteContext);
-  const {loading, note, error} = noteContext;
+  const {loading, note} = noteContext;
 
   useEffect(() => {
     noteContext.getNote(id);
+    // eslint-disable-next-line
   }, []);
 
   const RenderMain = () => {

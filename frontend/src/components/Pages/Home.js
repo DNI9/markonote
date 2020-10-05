@@ -26,6 +26,7 @@ const Home = () => {
         position: 'bottom-right',
       });
     }
+    // eslint-disable-next-line
   }, [error]);
 
   const onSaveButtonClick = () => {
