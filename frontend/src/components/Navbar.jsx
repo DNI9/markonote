@@ -48,7 +48,12 @@ const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
       p='0.5rem 1rem'
       shadow='lg'>
       <Box as={GoNote} size='24px' mr={1} />
-      <Heading pb={1} size='md' color='gray.800' letterSpacing='1px'>
+      <Heading
+        display={{base: 'none', md: 'block'}}
+        pb={1}
+        size='md'
+        color='gray.800'
+        letterSpacing='1px'>
         Markdown Note
       </Heading>
 
