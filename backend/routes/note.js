@@ -1,17 +1,29 @@
 import express from 'express';
 const router = express.Router();
 import Note from '../models/Note.js';
+import mongoose from 'mongoose';
 
 // @route   GET    /api/notes
 // @desc    Get single note
 // @access  Public
 router.get('/:id', async (req, res) => {
+  const isIdValid = mongoose.Types.ObjectId.isValid(req.params.id);
+  if (!isIdValid)
+    return res
+      .status(400)
+      .json({code: 'INVALID_ID', msg: 'This Object id is not valid'});
   try {
     const note = await Note.findById(req.params.id);
-    res.json({code: 'GET_NOTE', data: note});
+    if (note) {
+      return res.json({code: 'GET_NOTE', data: note});
+    }
+    if (!note)
+      return res
+        .status(400)
+        .json({code: 'NOT_FOUND', msg: 'No note found with this id'});
   } catch (err) {
     console.error(err.message);
-    req.status(500).send('Server error!');
+    res.status(500).send('Server error!');
   }
 });
 
