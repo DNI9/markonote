@@ -80,3 +80,26 @@ a {
   position: relative;
   font-weight: 500;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  td,
+  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tr:hover {
+    background-color: rgb(238, 238, 238);
+  }
+  th {
+    font-weight: 500;
+    padding: 0.8rem 0.6rem;
+    text-align: left;
+    background-color: #949494;
+    color: white;
+  }
+}
