@@ -32,6 +32,17 @@ const NoteState = props => {
     }
   };
 
+  const saveNoteToStorage = id => {
+    let noteIDs =
+      localStorage.getItem('MARKDOWN_NOTE_NOTE_IDs') === null
+        ? []
+        : JSON.parse(localStorage.getItem('MARKDOWN_NOTE_NOTE_IDs'));
+
+    noteIDs.push(id);
+
+    localStorage.setItem('MARKDOWN_NOTE_NOTE_IDs', JSON.stringify(noteIDs));
+  };
+
   // SAVE NOTE
   const saveNote = async data => {
     const noteData = {
@@ -47,6 +58,7 @@ const NoteState = props => {
       const res = await axios.post('/api/notes', noteData, config);
       dispatch({type: SAVE_NOTE, payload: res.data});
       console.log(res.data);
+      saveNoteToStorage(res.data.data._id);
     } catch (err) {
       // dispatch({ type: SAVE_ERROR, payload: err.response.msg });
       console.error(err);
