@@ -63,7 +63,11 @@ const Home = () => {
 
   return (
     <>
-      <Navbar onSaveButtonClick={onSaveButtonClick} setNoteName={setNoteName} />
+      <Navbar
+        setMarkdown={setMarkdown}
+        onSaveButtonClick={onSaveButtonClick}
+        setNoteName={setNoteName}
+      />
       <Flex p={3} minH='90vh'>
         <Suspense
           fallback={

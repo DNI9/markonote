@@ -17,11 +17,18 @@ import NoteContext from '../context/Note/noteContext';
 import CopyToClipboard from '../utils/CopyToClipboard';
 import AboutAppModal from './AboutAppModal';
 
-const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
+const Navbar = ({
+  onSaveButtonClick,
+  setMarkdown,
+  setNoteName,
+  publicMode,
+  noteName,
+}) => {
   let history = useHistory();
   const toast = useToast();
   const noteContext = useContext(NoteContext);
   const {note} = noteContext;
+
   function onCopyBtnClick() {
     if (note !== null) {
       CopyToClipboard(note.data._id);
@@ -39,6 +46,11 @@ const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
         position: 'bottom-right',
       });
     }
+  }
+
+  function onNewNoteClick() {
+    history.push('/');
+    setMarkdown && setMarkdown('');
   }
   const {isOpen, onOpen, onClose} = useDisclosure();
 
@@ -97,18 +109,14 @@ const Navbar = ({onSaveButtonClick, setNoteName, publicMode, noteName}) => {
             mr={2}
           />
         </Tooltip>
-        {publicMode && (
-          <Tooltip label='New Note' placement='bottom'>
-            <Icon
-              onClick={() => {
-                history.push('/');
-              }}
-              cursor='pointer'
-              name='add'
-              size='18px'
-            />
-          </Tooltip>
-        )}
+        <Tooltip label='New Note' placement='bottom'>
+          <Icon
+            onClick={onNewNoteClick}
+            cursor='pointer'
+            name='add'
+            size='18px'
+          />
+        </Tooltip>
       </Flex>
     </Flex>
   );
