@@ -32,7 +32,7 @@ const Home = () => {
   }, [error]);
 
   const onSaveButtonClick = () => {
-    if (markdown === '') {
+    if (markdown.trim() === '') {
       toast({
         description: 'Oh noe, looks like you have nothing to save',
         status: 'warning',
