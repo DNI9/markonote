@@ -11,7 +11,7 @@ router.get('/:id', async (req, res) => {
   if (!isIdValid)
     return res
       .status(400)
-      .json({code: 'INVALID_ID', msg: 'This Object id is not valid'});
+      .json({code: 'INVALID_ID', msg: 'dat note id is not valid'});
   try {
     const note = await Note.findById(req.params.id);
     if (note) {
