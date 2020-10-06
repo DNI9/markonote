@@ -1,8 +1,8 @@
-import {Box, Flex, Heading} from '@chakra-ui/core';
+import {Box, Flex, Heading, Tag, Text} from '@chakra-ui/core';
 import React from 'react';
 import ParseMarkdown from '../utils/ParseMarkdown';
 
-const MarkdownPreview = ({markdown}) => {
+const MarkdownPreview = ({markdown, setMarkdown}) => {
   return markdown === '' ? (
     <Flex
       justify='center'
@@ -16,6 +16,19 @@ const MarkdownPreview = ({markdown}) => {
       <Heading as='h2' size='xl' color='gray.600'>
         Full Emptybaazi
       </Heading>
+      <Text textAlign='center' color='gray.500' fontSize='md'>
+        Write something like <code># Hello</code> or if you don't know how to
+        write in markdown, then google is your friend. Just Kidding, click the
+        below button to load an example.
+      </Text>
+      <Tag
+        mt={4}
+        variantColor='blue'
+        cursor='pointer'
+        rounded='full'
+        onClick={() => setMarkdown('# Hello')}>
+        Demo Note
+      </Tag>
     </Flex>
   ) : (
     <Box

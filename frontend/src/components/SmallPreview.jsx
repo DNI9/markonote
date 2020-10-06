@@ -2,7 +2,12 @@ import {Box, CloseButton} from '@chakra-ui/core';
 import React from 'react';
 import MarkdownPreview from './MarkdownPreview';
 
-const SmallPreview = ({markdown, smallPreview, SetSmallPreview}) => {
+const SmallPreview = ({
+  markdown,
+  smallPreview,
+  SetSmallPreview,
+  setMarkdown,
+}) => {
   return (
     <Box
       display={smallPreview ? 'block' : 'none'}
@@ -20,7 +25,7 @@ const SmallPreview = ({markdown, smallPreview, SetSmallPreview}) => {
           onClick={() => SetSmallPreview(false)}
         />
       </Box>
-      <MarkdownPreview markdown={markdown} />
+      <MarkdownPreview setMarkdown={setMarkdown} markdown={markdown} />
     </Box>
   );
 };

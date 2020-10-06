@@ -66,6 +66,7 @@ const Home = () => {
       <Navbar onSaveButtonClick={onSaveButtonClick} setNoteName={setNoteName} />
       <Flex p={3} minH='90vh'>
         <SmallPreview
+          setMarkdown={setMarkdown}
           markdown={markdown}
           smallPreview={smallPreview}
           SetSmallPreview={SetSmallPreview}
@@ -80,7 +81,7 @@ const Home = () => {
           display={{base: 'none', md: 'none', lg: 'block'}}
           flex='1'
           ml={3}>
-          <MarkdownPreview markdown={markdown} />
+          <MarkdownPreview markdown={markdown} setMarkdown={setMarkdown} />
         </Box>
       </Flex>
     </>
