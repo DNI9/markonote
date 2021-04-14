@@ -40,8 +40,8 @@ const Navbar = ({
       });
     } else {
       toast({
-        description: 'oho, Save note first then try to copy',
-        status: 'error',
+        description: 'Please save the note to to copy.',
+        status: 'warning',
         duration: 5000,
         position: 'bottom-right',
       });
@@ -71,7 +71,7 @@ const Navbar = ({
         size='md'
         color='gray.800'
         letterSpacing='1px'>
-        Guunobindo Note
+        MarkNote
       </Heading>
 
       <Flex align='center' justify='start' ml='auto'>

@@ -34,7 +34,7 @@ const Home = () => {
   const onSaveButtonClick = () => {
     if (markdown.trim() === '') {
       toast({
-        description: 'Oh noe, looks like you have nothing to save',
+        description: 'Nothing to save, please write something.',
         status: 'warning',
         duration: 5000,
         position: 'bottom-right',

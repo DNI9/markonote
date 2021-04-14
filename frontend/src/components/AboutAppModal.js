@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/core';
 import React from 'react';
 import {GoNote} from 'react-icons/go';
-import {SiTelegram, SiGithub} from 'react-icons/si';
+import {SiGithub} from 'react-icons/si';
 
 const AboutAppModal = ({isOpen, onClose}) => {
   return (
@@ -24,22 +24,13 @@ const AboutAppModal = ({isOpen, onClose}) => {
           <Box as={GoNote} size='48px' />
 
           <Heading as='h2' size='lg'>
-            Guunobindo Note
+            Mark Note
           </Heading>
           <Text fontSize='md'>
-            While taking notes in online class, the idea came to mind that a app
-            allows user to create and share notes with markdown. So, this is the
-            result. Sill working on adding bugs,features.
+            A note taking app I made while in pandemic to write and share notes
+            with friends.
           </Text>
           <Box mt={3}>
-            <Box
-              onClick={() => window.open('https://t.me/SRnine', '_blank')}
-              as={SiTelegram}
-              color='blue.400'
-              size='24px'
-              mr={2}
-              cursor='pointer'
-            />
             <Box
               onClick={() => window.open('https://github.com/dni9', '_blank')}
               as={SiGithub}
@@ -52,7 +43,7 @@ const AboutAppModal = ({isOpen, onClose}) => {
 
         <ModalFooter>
           <Button variant='ghost' mr={3} onClick={onClose}>
-            K
+            Close
           </Button>
         </ModalFooter>
       </ModalContent>

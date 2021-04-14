@@ -7,19 +7,16 @@ const MarkdownPreview = ({markdown, setMarkdown}) => {
     <Flex
       justify='center'
       align='center'
+      px={15}
       flexDirection='column'
-      className='abs-center'>
-      <img
-        src='https://media.tenor.com/images/c9a5b1e510761052506c7c227410ac96/tenor.gif'
-        alt=''
-      />
+      className='abs-center'
+      w='full'>
       <Heading as='h2' size='xl' color='gray.600'>
-        Full Emptybaazi
+        Nothing to preview
       </Heading>
       <Text textAlign='center' color='gray.500' fontSize='md'>
-        Write something like <code># Hello</code> or if you don't know how to
-        write in markdown, then google is your friend. Just Kidding, click the
-        below button to load an example.
+        Write something like <code># Hello</code> or, click the below button to
+        load an example.
       </Text>
       <Tag
         mt={4}
