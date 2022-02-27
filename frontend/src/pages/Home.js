@@ -1,5 +1,6 @@
 import {Box, Flex, useToast} from '@chakra-ui/core';
 import React, {Suspense, useContext, useEffect, useState} from 'react';
+import useKeyboardShortcut from 'use-keyboard-shortcut';
 import FallbackSpinner from '../components/FallbackSpinner';
 import MarkdownInput from '../components/MarkdownInput';
 import MarkdownPreview from '../components/MarkdownPreview';
@@ -17,6 +18,11 @@ const Home = () => {
   const [markdown, setMarkdown] = useState('');
   const [noteName, setNoteName] = useState('Dummy Note');
   const [smallPreview, SetSmallPreview] = useState(false);
+  useKeyboardShortcut(['Control', 'S'], () => onSaveButtonClick(), {
+    overrideSystem: true,
+    ignoreInputFields: false,
+    repeatOnHold: false,
+  });
 
   useEffect(() => {
     // for case when user came from note viewing mode, note is still in state,

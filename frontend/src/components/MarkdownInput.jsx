@@ -14,7 +14,8 @@ const MarkdownInput = ({setMarkdown, markdown, SetSmallPreview}) => {
         value={markdown}
         onChange={handleInputChange}
         h='100%'
-        placeholder='Start writing with Markdown'
+        _placeholder={{fontSize: '1rem'}}
+        placeholder='Start writing with Markdown and hit Ctrl + S to save'
       />
       <IconButton
         onClick={() => SetSmallPreview(true)}
