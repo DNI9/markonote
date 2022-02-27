@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/core';
 import React, {useContext} from 'react';
 import {GoNote} from 'react-icons/go';
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import NoteContext from '../context/Note/noteContext';
 import {defaultToastOptions} from '../utils/constants';
 import CopyToClipboard from '../utils/CopyToClipboard';
@@ -62,16 +62,25 @@ const Navbar = ({
       p='0.5rem 1rem'
       shadow='lg'
       zIndex='1'>
-      <Box as={GoNote} size='24px' mr={1} onClick={onOpen} cursor='pointer' />
+      <Box
+        as={GoNote}
+        size='25px'
+        mr={1}
+        mb={1}
+        onClick={onOpen}
+        cursor='pointer'
+      />
       <AboutAppModal isOpen={isOpen} onClose={onClose} />
-      <Heading
-        display={{base: 'none', md: 'block'}}
-        pb={1}
-        size='md'
-        color='gray.800'
-        letterSpacing='1px'>
-        MarkoNote
-      </Heading>
+      <Link to='/'>
+        <Heading
+          display={{base: 'none', md: 'block'}}
+          pb={1}
+          size='md'
+          color='gray.800'
+          letterSpacing='1px'>
+          MarkoNote
+        </Heading>
+      </Link>
 
       <Flex align='center' justify='start' ml='auto'>
         <Tooltip
