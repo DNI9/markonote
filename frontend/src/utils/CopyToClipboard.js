@@ -1,6 +1,6 @@
 const CopyToClipboard = async newClip => {
   try {
-    await navigator.clipboard.writeText(`${window.location.href}${newClip}`);
+    await navigator.clipboard.writeText(`${window.location.origin}/${newClip}`);
     console.log('copied');
   } catch (error) {
     await navigator.permissions.query({name: 'clipboard-write'});
