@@ -1,11 +1,11 @@
 import {Box, Spinner} from '@chakra-ui/core';
 import React, {Suspense} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import '../../node_modules/highlight.js/styles/github.css';
-import '../main.css';
+import '../node_modules/highlight.js/styles/github.css';
+import './main.css';
 
-const Home = React.lazy(() => import('./Pages/Home'));
-const Note = React.lazy(() => import('./Pages/Note'));
+const Home = React.lazy(() => import('./pages/Home'));
+const Note = React.lazy(() => import('./pages/Note'));
 
 export default function App() {
   const LazyRoute = ({component: Component, ...rest}) => (

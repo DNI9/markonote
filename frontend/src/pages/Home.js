@@ -1,10 +1,11 @@
 import {Box, Flex, Spinner, useToast} from '@chakra-ui/core';
 import React, {Suspense, useContext, useEffect, useState} from 'react';
-import NoteContext from '../../context/Note/noteContext';
-import MarkdownInput from '../MarkdownInput';
-import MarkdownPreview from '../MarkdownPreview';
-import Navbar from '../Navbar';
-const SmallPreview = React.lazy(() => import('../SmallPreview'));
+import MarkdownInput from '../components/MarkdownInput';
+import MarkdownPreview from '../components/MarkdownPreview';
+import Navbar from '../components/Navbar';
+import NoteContext from '../context/Note/noteContext';
+
+const SmallPreview = React.lazy(() => import('../components/SmallPreview'));
 
 const Home = () => {
   const toast = useToast();

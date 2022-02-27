@@ -1,7 +1,7 @@
+import {ThemeProvider} from '@chakra-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import {ThemeProvider} from '@chakra-ui/core';
+import App from './App';
 import NoteState from './context/Note/NoteState';
 
 ReactDOM.render(

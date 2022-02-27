@@ -1,9 +1,9 @@
 import {Box, Flex, Spinner} from '@chakra-ui/core';
 import React, {useContext, useEffect} from 'react';
-import MarkdownPreview from '../MarkdownPreview';
-import Navbar from '../Navbar';
-import NoteContext from '../../context/Note/noteContext';
 import {Redirect, useParams} from 'react-router-dom';
+import MarkdownPreview from '../components/MarkdownPreview';
+import Navbar from '../components/Navbar';
+import NoteContext from '../context/Note/noteContext';
 
 const Note = () => {
   const {id} = useParams();
