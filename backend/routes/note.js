@@ -1,26 +1,27 @@
 import express from 'express';
-const router = express.Router();
-import Note from '../models/Note.js';
 import mongoose from 'mongoose';
+import Note from '../models/Note.js';
+const router = express.Router();
 
-// @route   GET    /api/notes
+// @route   GET    /api/notes/:id
 // @desc    Get single note
 // @access  Public
 router.get('/:id', async (req, res) => {
   const isIdValid = mongoose.Types.ObjectId.isValid(req.params.id);
-  if (!isIdValid)
+  if (!isIdValid) {
     return res
       .status(400)
-      .json({code: 'INVALID_ID', msg: 'dat note id is not valid'});
+      .json({code: 'INVALID_ID', msg: 'Note id is not valid'});
+  }
+
   try {
     const note = await Note.findById(req.params.id);
-    if (note) {
-      return res.json({code: 'GET_NOTE', data: note});
-    }
-    if (!note)
+    if (!note) {
       return res
-        .status(400)
+        .status(404)
         .json({code: 'NOT_FOUND', msg: 'No note found with this id'});
+    }
+    return res.json({code: 'GET_NOTE', data: note});
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error!');
@@ -35,26 +36,35 @@ router.post('/', async (req, res) => {
   try {
     const newNote = new Note({noteName, markdown, author});
     const note = await newNote.save();
-    res.json({code: 'SAVE_NOTE', msg: 'Note Saved', data: note});
+    return res.json({code: 'SAVE_NOTE', msg: 'Note Saved', data: note});
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error!');
   }
 });
 
-// @route   POST    /api/notes
+// @route   PUT    /api/notes/:id
 // @desc    Update note
 // @access  public
 router.put('/:id', async (req, res) => {
-  const {noteName, markdown, author} = req.body;
   try {
-    const updatedNote = {noteName, markdown, author};
+    const updatedNote = {};
+    Object.keys(req.body).forEach(key => {
+      updatedNote[key] = req.body[key];
+    });
+
     const note = await Note.findByIdAndUpdate(
       req.params.id,
       {$set: updatedNote},
       {new: true}
     );
-    res.json({code: 'UPDATE_NOTE', msg: 'Note Updated', data: note});
+
+    if (!note) {
+      return res
+        .status(404)
+        .json({code: 'NOT_FOUND', msg: 'No note found with this id'});
+    }
+    return res.json({code: 'UPDATE_NOTE', msg: 'Note Updated', data: note});
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error!');
