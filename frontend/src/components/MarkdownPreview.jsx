@@ -1,4 +1,4 @@
-import {Box, Flex, Heading, Tag, Text} from '@chakra-ui/core';
+import {Box, Flex, Heading, Link, Tag, Text} from '@chakra-ui/core';
 import React from 'react';
 import ParseMarkdown from '../utils/ParseMarkdown';
 
@@ -16,14 +16,19 @@ const MarkdownPreview = ({markdown, setMarkdown}) => {
       </Heading>
       <Text textAlign='center' color='gray.500' fontSize='md'>
         Write something like <code># Hello</code> or, click the below button to
-        load an example.
+        load an example. Learn more about
+        <Link
+          isExternal
+          href='https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax'>
+          markdown syntax.
+        </Link>
       </Text>
       <Tag
         mt={4}
         variantColor='blue'
         cursor='pointer'
-        rounded='full'
-        onClick={() => setMarkdown('# Hello')}>
+        rounded='5px'
+        onClick={() => setMarkdown('# Hello world\n\n- item 1\n- item 2')}>
         Demo Note
       </Tag>
     </Flex>
