@@ -2,12 +2,12 @@ import {Box, IconButton, Textarea} from '@chakra-ui/core';
 import React from 'react';
 
 const MarkdownInput = ({setMarkdown, markdown, SetSmallPreview}) => {
-  const handleInputChange = e => {
-    setMarkdown(e.target.value);
-  };
+  const handleInputChange = e => setMarkdown(e.target.value);
+
   return (
     <Box minW='50vw' flex='1' pos='relative'>
       <Textarea
+        autoFocus
         className='textarea_input'
         resize='none'
         borderColor='gray.300'
