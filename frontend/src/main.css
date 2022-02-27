@@ -5,7 +5,8 @@
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit; /* force to inherit from body */
+  box-sizing: inherit;
+  /* force to inherit from body */
 }
 
 body {
@@ -13,10 +14,8 @@ body {
   box-sizing: border-box;
 }
 
-.textarea_input {
-  &::placeholder {
-    font-size: 1.2rem;
-  }
+.textarea_input::placeholder {
+  font-size: 1.2rem;
 }
 
 h1,
@@ -38,19 +37,12 @@ button {
   cursor: pointer;
 }
 
-//////////////////////////
-// HELPER CLASSES
-/////////////////////////
 .abs-center {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-
-//////////////////////////
-// MARKDOWN STYLES
-//////////////////////////
 
 code {
   font-family: 'Victor Mono', monospace;
@@ -62,7 +54,7 @@ code {
 
 blockquote {
   border-left: 2px solid;
-  border-color: rgb(40, 41, 48);
+  border-color: #282930;
   background: rgba(241, 241, 241, 0.651);
   padding: 0.5rem 0.8rem;
   margin: 0.3rem 0;
@@ -84,22 +76,26 @@ a {
 table {
   border-collapse: collapse;
   width: 100%;
-  td,
-  th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  tr:hover {
-    background-color: rgb(238, 238, 238);
-  }
-  th {
-    font-weight: 500;
-    padding: 0.8rem 0.6rem;
-    text-align: left;
-    background-color: #949494;
-    color: white;
-  }
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #eee;
+}
+
+table th {
+  font-weight: 500;
+  padding: 0.8rem 0.6rem;
+  text-align: left;
+  background-color: #949494;
+  color: white;
 }
