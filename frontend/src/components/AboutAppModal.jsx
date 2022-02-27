@@ -18,7 +18,7 @@ const AboutAppModal = ({isOpen, onClose}) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent borderRadius={5}>
         <ModalHeader>About this App</ModalHeader>
         <ModalBody>
           <Box as={GoNote} size='48px' />
