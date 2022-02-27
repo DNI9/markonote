@@ -1,7 +1,8 @@
-import {Box, Spinner} from '@chakra-ui/core';
+import {Box} from '@chakra-ui/core';
 import React, {Suspense} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import '../node_modules/highlight.js/styles/github.css';
+import FallbackSpinner from './components/FallbackSpinner';
 import './main.css';
 
 const Home = React.lazy(() => import('./pages/Home'));
@@ -12,12 +13,7 @@ export default function App() {
     <Route
       {...rest}
       render={props => (
-        <Suspense
-          fallback={
-            <Box className='abs-center'>
-              <Spinner size='xl' />
-            </Box>
-          }>
+        <Suspense fallback={<FallbackSpinner />}>
           <Component {...props} />
         </Suspense>
       )}

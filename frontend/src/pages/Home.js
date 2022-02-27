@@ -1,9 +1,11 @@
-import {Box, Flex, Spinner, useToast} from '@chakra-ui/core';
+import {Box, Flex, useToast} from '@chakra-ui/core';
 import React, {Suspense, useContext, useEffect, useState} from 'react';
+import FallbackSpinner from '../components/FallbackSpinner';
 import MarkdownInput from '../components/MarkdownInput';
 import MarkdownPreview from '../components/MarkdownPreview';
 import Navbar from '../components/Navbar';
 import NoteContext from '../context/Note/noteContext';
+import {defaultToastOptions} from '../utils/constants';
 
 const SmallPreview = React.lazy(() => import('../components/SmallPreview'));
 
@@ -18,46 +20,40 @@ const Home = () => {
 
   useEffect(() => {
     // for case when user came from note viewing mode, note is still in state,
-    if (note !== null) {
-      noteContext.clearNote();
-    }
+    if (note !== null) noteContext.clearNote();
+  }, []);
+
+  useEffect(() => {
     if (error !== null) {
       toast({
+        ...defaultToastOptions,
         description: error.msg,
         status: 'error',
-        duration: 5000,
-        position: 'bottom-right',
       });
     }
-    // eslint-disable-next-line
   }, [error]);
 
   const onSaveButtonClick = () => {
     if (markdown.trim() === '') {
       toast({
+        ...defaultToastOptions,
         description: 'Nothing to save, please write something.',
         status: 'warning',
-        duration: 5000,
-        position: 'bottom-right',
       });
       return;
     }
     if (note === null) {
       noteContext.saveNote({markdown, noteName});
       toast({
+        ...defaultToastOptions,
         description: 'Saving note, continue typing.',
-        status: 'success',
-        duration: 4000,
-        position: 'bottom-right',
       });
     }
     if (note !== null) {
       noteContext.updateNote({markdown, noteName}, note.data._id);
       toast({
+        ...defaultToastOptions,
         description: 'Updating note, continue typing.',
-        status: 'success',
-        duration: 4000,
-        position: 'bottom-right',
       });
     }
   };
@@ -70,12 +66,7 @@ const Home = () => {
         setNoteName={setNoteName}
       />
       <Flex p={3} minH='90vh'>
-        <Suspense
-          fallback={
-            <Box className='abs-center'>
-              <Spinner size='xl' />
-            </Box>
-          }>
+        <Suspense fallback={<FallbackSpinner />}>
           <SmallPreview
             setMarkdown={setMarkdown}
             markdown={markdown}
