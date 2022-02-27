@@ -1,14 +1,14 @@
+import axios from 'axios';
 import React, {useReducer} from 'react';
-import noteContext from './noteContext';
-import noteReducer from './noteReducer';
 import {
+  CLEAR_NOTE,
   GET_NOTE,
   NOTE_ERROR,
   SAVE_NOTE,
   UPDATE_NOTE,
-  CLEAR_NOTE,
 } from '../types';
-import axios from 'axios';
+import noteContext from './noteContext';
+import noteReducer from './noteReducer';
 
 const NoteState = props => {
   // NOTE: REMEMBER TO SET AS VALUE BELOW
@@ -57,7 +57,6 @@ const NoteState = props => {
     try {
       const res = await axios.post('/api/notes', noteData, config);
       dispatch({type: SAVE_NOTE, payload: res.data});
-      console.log(res.data);
       saveNoteToStorage(res.data.data._id);
     } catch (err) {
       // dispatch({ type: SAVE_ERROR, payload: err.response.msg });
@@ -79,7 +78,6 @@ const NoteState = props => {
     try {
       const res = await axios.put(`/api/notes/${noteID}`, noteData, config);
       dispatch({type: UPDATE_NOTE, payload: res.data});
-      console.log(res.data);
     } catch (err) {
       // dispatch({ type: SAVE_ERROR, payload: err.response.msg });
       console.error(err);
