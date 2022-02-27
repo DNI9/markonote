@@ -14,6 +14,7 @@ import React, {useContext} from 'react';
 import {GoNote} from 'react-icons/go';
 import {useHistory} from 'react-router-dom';
 import NoteContext from '../context/Note/noteContext';
+import {defaultToastOptions} from '../utils/constants';
 import CopyToClipboard from '../utils/CopyToClipboard';
 import AboutAppModal from './AboutAppModal';
 
@@ -30,28 +31,26 @@ const Navbar = ({
   const {note} = noteContext;
 
   function onCopyBtnClick() {
-    if (note !== null) {
-      CopyToClipboard(note.data._id);
-      toast({
-        description: 'Copied Note URL to clipboard',
-        status: 'success',
-        duration: 5000,
-        position: 'bottom-right',
-      });
-    } else {
-      toast({
+    if (!note) {
+      return toast({
+        ...defaultToastOptions,
         description: 'Please save the note to to copy.',
         status: 'warning',
-        duration: 5000,
-        position: 'bottom-right',
       });
     }
+
+    CopyToClipboard(note.data._id);
+    toast({
+      ...defaultToastOptions,
+      description: 'Copied Note URL to clipboard',
+    });
   }
 
   function onNewNoteClick() {
     history.push('/');
     setMarkdown && setMarkdown('');
   }
+
   const {isOpen, onOpen, onClose} = useDisclosure();
 
   return (
@@ -71,7 +70,7 @@ const Navbar = ({
         size='md'
         color='gray.800'
         letterSpacing='1px'>
-        MarkNote
+        MarkoNote
       </Heading>
 
       <Flex align='center' justify='start' ml='auto'>
