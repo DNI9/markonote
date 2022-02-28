@@ -9,7 +9,6 @@ import {defaultToastOptions} from '../utils/constants';
 import ParseMarkdown from '../utils/ParseMarkdown';
 
 const defaultMarkdown = `# Hello world
-### This is preview pane
 
 To learn more about markdown syntax, visit this [link](https://www.markdownguide.org/basic-syntax/)
 `;
@@ -66,7 +65,7 @@ const Home = () => {
     }
   };
 
-  const handleEditorChange = ({html, text}) => {
+  const handleEditorChange = ({text}) => {
     const newValue = text.replace(/\d/g, '');
     setMarkdown(newValue);
   };
