@@ -2,11 +2,11 @@
 	<img src=".assets/app-icon.png" alt="Hoppscotch Logo" height="100" />
 	<br />
 	<p>
-	<h2>
+	<h3>
 		<b>
 			MarkoNote
 		</b>
-	</h2>
+	</h3>
 	</p>
 	<p>
 		<b>
