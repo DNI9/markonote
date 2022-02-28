@@ -15,9 +15,7 @@ const Home = () => {
   const toast = useToast();
   const noteContext = useContext(NoteContext);
   const {note, error} = noteContext;
-
   const [markdown, setMarkdown] = useState(defaultMarkdown);
-  const mdEditor = React.useRef(null);
   const [noteName, setNoteName] = useState('Dummy Note');
   useKeyboardShortcut(['Alt', 'S'], () => onSaveButtonClick(), {
     overrideSystem: false,
@@ -80,7 +78,6 @@ const Home = () => {
       <Box h='90vh' p={3}>
         <Editor
           id='mn'
-          ref={mdEditor}
           value={markdown}
           style={{height: '100%'}}
           onChange={handleEditorChange}
