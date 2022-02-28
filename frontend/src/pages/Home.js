@@ -9,7 +9,10 @@ import {defaultToastOptions} from '../utils/constants';
 import ParseMarkdown from '../utils/ParseMarkdown';
 
 const defaultMarkdown = `# Hello world
-To learn more about markdown, visit this [link](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)`;
+### This is preview pane
+
+To learn more about markdown syntax, visit this [link](https://www.markdownguide.org/basic-syntax/)
+`;
 
 const Home = () => {
   const toast = useToast();
