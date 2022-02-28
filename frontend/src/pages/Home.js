@@ -1,25 +1,26 @@
-import {Box, Flex, useToast} from '@chakra-ui/core';
-import React, {Suspense, useContext, useEffect, useState} from 'react';
+import {Box, useToast} from '@chakra-ui/core';
+import React, {useContext, useEffect, useState} from 'react';
+import Editor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
 import useKeyboardShortcut from 'use-keyboard-shortcut';
-import FallbackSpinner from '../components/FallbackSpinner';
-import MarkdownInput from '../components/MarkdownInput';
-import MarkdownPreview from '../components/MarkdownPreview';
 import Navbar from '../components/Navbar';
 import NoteContext from '../context/Note/noteContext';
 import {defaultToastOptions} from '../utils/constants';
+import ParseMarkdown from '../utils/ParseMarkdown';
 
-const SmallPreview = React.lazy(() => import('../components/SmallPreview'));
+const defaultMarkdown = `# Hello world
+To learn more about markdown, visit this [link](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)`;
 
 const Home = () => {
   const toast = useToast();
   const noteContext = useContext(NoteContext);
   const {note, error} = noteContext;
 
-  const [markdown, setMarkdown] = useState('');
+  const [markdown, setMarkdown] = useState(defaultMarkdown);
+  const mdEditor = React.useRef(null);
   const [noteName, setNoteName] = useState('Dummy Note');
-  const [smallPreview, SetSmallPreview] = useState(false);
-  useKeyboardShortcut(['Control', 'S'], () => onSaveButtonClick(), {
-    overrideSystem: true,
+  useKeyboardShortcut(['Alt', 'S'], () => onSaveButtonClick(), {
+    overrideSystem: false,
     ignoreInputFields: false,
     repeatOnHold: false,
   });
@@ -64,6 +65,11 @@ const Home = () => {
     }
   };
 
+  const handleEditorChange = ({html, text}) => {
+    const newValue = text.replace(/\d/g, '');
+    setMarkdown(newValue);
+  };
+
   return (
     <>
       <Navbar
@@ -71,28 +77,17 @@ const Home = () => {
         onSaveButtonClick={onSaveButtonClick}
         setNoteName={setNoteName}
       />
-      <Flex p={3} minH='90vh'>
-        <Suspense fallback={<FallbackSpinner />}>
-          <SmallPreview
-            setMarkdown={setMarkdown}
-            markdown={markdown}
-            smallPreview={smallPreview}
-            SetSmallPreview={SetSmallPreview}
-          />
-        </Suspense>
-        <MarkdownInput
-          markdown={markdown}
-          setMarkdown={setMarkdown}
-          SetSmallPreview={SetSmallPreview}
+      <Box h='90vh' p={3}>
+        <Editor
+          id='mn'
+          ref={mdEditor}
+          value={markdown}
+          style={{height: '100%'}}
+          onChange={handleEditorChange}
+          renderHTML={text => ParseMarkdown(text)}
+          placeholder='Write something here and hit Alt+S to save'
         />
-        <Box
-          pos='relative'
-          display={{base: 'none', md: 'none', lg: 'block'}}
-          flex='1'
-          ml={3}>
-          <MarkdownPreview markdown={markdown} setMarkdown={setMarkdown} />
-        </Box>
-      </Flex>
+      </Box>
     </>
   );
 };

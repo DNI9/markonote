@@ -1,9 +1,11 @@
-import {Box, Flex, Spinner} from '@chakra-ui/core';
+import {Box, Spinner} from '@chakra-ui/core';
 import React, {useContext, useEffect} from 'react';
+import Editor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
 import {Redirect, useParams} from 'react-router-dom';
-import MarkdownPreview from '../components/MarkdownPreview';
 import Navbar from '../components/Navbar';
 import NoteContext from '../context/Note/noteContext';
+import ParseMarkdown from '../utils/ParseMarkdown';
 
 const Note = () => {
   const {id} = useParams();
@@ -16,24 +18,28 @@ const Note = () => {
   }, []);
 
   const RenderMain = () => {
-    if (note !== null && note.code === 'GET_NOTE') {
-      return (
-        <>
-          <Navbar publicMode noteName={note.data.noteName} />
-          <Flex p={3} minH='90vh'>
-            <Box flex='1' ml={3}>
-              <MarkdownPreview markdown={note.data.markdown} />
-            </Box>
-          </Flex>
-        </>
-      );
-    }
-    return <Redirect to='/' />;
+    if (!note) return <Redirect to='/' />;
+
+    return (
+      <>
+        <Navbar publicMode noteName={note.data.noteName} />
+        <Box h='90vh' p={3}>
+          <Editor
+            id='mn'
+            readOnly
+            value={note.data.markdown}
+            style={{height: '100%'}}
+            renderHTML={text => ParseMarkdown(text)}
+            view={{md: false, menu: false}}
+          />
+        </Box>
+      </>
+    );
   };
 
   return (
     <>
-      {loading && note === null ? (
+      {loading && !note ? (
         <Box className='abs-center'>
           <Spinner size='xl' />
         </Box>
