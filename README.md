@@ -1,30 +1,27 @@
 <div align="center">
-	<img src=".assets/app-icon.png" alt="Hoppscotch Logo" height="100" />
+	<a href="https://markonote.herokuapp.com">
+		<img src=".assets/app-icon.png" alt="Hoppscotch Logo" height="100" />
+	</a>
 	<br />
-	<p>
 	<h3>
-		<b>
-			MarkoNote
-		</b>
+		MarkoNote
 	</h3>
-	</p>
 	<p>
-		<b>
-			Share notes with Markdown
-		</b>
+		Share notes with Markdown
 	</p>
-	<p>
+	<div align="center">
+		<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"
+			alt="react" />
+		<img src="https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white"
+			alt="chakra ui" />
+		<img
+			src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB"
+			alt="express.js" />
+		<img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white"
+			alt="mongodb" />
+		</>
+	</div>
 </div>
-<p align="center">
-	<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"
-		alt="react" />
-	<img src="https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white"
-		alt="chakra ui" />
-	<img src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB"
-		alt="express.js" />
-	<img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white"
-		alt="mongodb" />
-</p>
 
 ---
 
