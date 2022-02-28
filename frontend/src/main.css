@@ -46,10 +46,6 @@ button {
 
 code {
   font-family: 'Victor Mono', monospace;
-  margin: 0.8rem 0;
-  padding: 0.2rem 0.6rem !important;
-  background: rgba(238, 238, 238, 0.808) !important;
-  border-radius: 5px;
 }
 
 blockquote {
