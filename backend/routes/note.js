@@ -1,5 +1,4 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import Note from '../models/Note.js';
 const router = express.Router();
 
@@ -7,13 +6,6 @@ const router = express.Router();
 // @desc    Get single note
 // @access  Public
 router.get('/:id', async (req, res) => {
-  const isIdValid = mongoose.Types.ObjectId.isValid(req.params.id);
-  if (!isIdValid) {
-    return res
-      .status(400)
-      .json({code: 'INVALID_ID', msg: 'Note id is not valid'});
-  }
-
   try {
     const note = await Note.findById(req.params.id);
     if (!note) {
