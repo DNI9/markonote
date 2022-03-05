@@ -1,6 +1,6 @@
 <div align="center">
 	<a href="https://markonote.herokuapp.com">
-		<img src=".assets/app-icon.png" alt="Hoppscotch Logo" height="100" />
+		<img src=".assets/app-icon.png" alt="Markonote Logo" height="100" />
 	</a>
 	<br />
 	<h3>
